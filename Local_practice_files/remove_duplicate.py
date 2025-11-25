@@ -8,6 +8,7 @@ class Solution:
                 if i !=j and nums[i] == nums[j]:
                     nums.pop(j)
                     k -= 1
+                    j=0
                 j += 1
             i += 1
         return k
