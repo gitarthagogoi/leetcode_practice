@@ -1,11 +1,19 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) == 2:
-            if s[0] == s[1]:
-                return True
-        if len(s) % 2 != 0:
-            return False
-        for i in range(len(s) // 2):
-            if s[i] != s[len(s)-1-i]:
-                return False
-        return True
+        stack = []
+        hashmap = {")":"(", "}":"{", "]":"["}
+
+        for c in s:
+            if c not in hashmap:
+                stack.append(c)
+            else:
+                if not stack:
+                    return False
+                else:
+                    popped = stack.pop()
+                    if popped != hashmap[c]:
+                        return False
+        return not stack
+    
+s = Solution().isValid("([]())")
+print(s)
